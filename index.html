@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AGILE PRIME — General Contracting</title>
+  <meta name="description" content="AGILE PRIME delivers civil, MEP & luxury fit-out across the UAE, KSA & Egypt. Since 1996. BIM-driven. ISO-aligned. Zero-incident ambition."/>
+  <link rel="icon" href="favicon.ico"/>
+  <meta name="theme-color" content="#0b0b0c"/>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{
+      colors:{gold:{DEFAULT:'#b88917'}},
+      boxShadow:{lux:'0 0 0 1px rgba(184,137,23,.35),0 20px 60px rgba(184,137,23,.18)'}
+    }}} 
+  </script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script defer src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script defer src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis (smooth scroll) -->
+  <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.30/bundled/lenis.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script type="module">
+    import { createIcons } from "https://unpkg.com/lucide@latest/dist/esm/lucide.js";
+    addEventListener('DOMContentLoaded',()=>createIcons({attrs:{class:'w-5 h-5'}}))
+  </script>
+
+  <style>
+    .gold-text{background:linear-gradient(90deg,#f1d27a,#b88917,#8a6712);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .glass{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .section-slope{clip-path:polygon(0 4rem,100% 0,100% calc(100% - 4rem),0 100%)}
+    .tick:after{content:"";display:inline-block;width:.55rem;height:.55rem;border-radius:999px;background:#b88917;margin-left:.5rem}
+    .cardsnap{scroll-snap-type:x mandatory}
+    .cardsnap>*{scroll-snap-align:start}
+    .logo-strip{animation:strip 26s linear infinite}
+    @keyframes strip{to{transform:translateX(-50%)}}
+
+    /* nav underline */
+    .nav a{position:relative;padding-bottom:.4rem}
+    .nav a:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:linear-gradient(90deg,#b88917,#d2aa3a);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+    .nav a:hover:after{transform:scaleX(1)}
+    .nav a[aria-current="true"]{color:#fff}
+    .nav a[aria-current="true"]:after{transform:scaleX(1)}
+
+    .section-title{letter-spacing:-.01em}
+    .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);transition:transform .25s ease,border-color .25s ease,background-color .25s ease}
+    .card:hover{transform:translateY(-3px);border-color:rgba(184,137,23,.35);background:rgba(255,255,255,.04)}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+    .logo-img{height:4rem;width:auto;transition:transform .25s ease}
+    .logo-img:hover{transform:scale(1.03)}
+  </style>
+</head>
+<body class="bg-[#0b0b0c] text-white">
+  <!-- ===== Header ===== -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-black/40 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <img src="image/Agile-Logo.png" alt="AGILE PRIME" class="logo-img" loading="eager"/>
+        <div class="leading-tight hidden sm:block">
+          <div class="text-xl font-black tracking-tight">AGILE PRIME</div>
+          <div class="text-[10px] uppercase tracking-[0.25em] text-white/60">General Contracting L.L.C.</div>
+        </div>
+      </a>
+      <nav class="nav hidden md:flex items-center gap-6 text-sm">
+        <a href="#about" class="text-white/70 hover:text-white">About</a>
+        <a href="#services" class="text-white/70 hover:text-white">Services</a>
+        <a href="#projects" class="text-white/70 hover:text-white">Projects</a>
+        <a href="#excellence" class="text-white/70 hover:text-white">Excellence</a>
+        <a href="#innovation" class="text-white/70 hover:text-white">Innovation</a>
+        <a href="#contact" class="text-white/70 hover:text-white">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="#rfp" class="hidden sm:inline-flex rounded-2xl bg-white text-black px-5 py-2.5 hover:opacity-90 shadow-lux">Request Proposal</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="relative pt-28" aria-label="Hero">
+    <div class="absolute inset-0 -z-10">
+      <img src="https://cdn.prod.website-files.com/6487761fc9643cfd4ff93058/666764a17c17fb0ff66b9f43_phases_of_construction_projects.webp" alt="Construction hero" class="h-full w-full object-cover" loading="eager"/>
+      <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.35),rgba(11,11,12,1))]"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10 items-center min-h-[70vh]">
+        <div>
+          <h1 class="text-5xl md:text-7xl font-black leading-[1.02] tracking-tight">Building Tomorrow with <span class="gold-text">Precision</span></h1>
+          <p class="mt-5 text-lg md:text-xl text-white/80 max-w-2xl">Civil • MEP • Luxury Fit-Out across the UAE, KSA & Egypt — on time, on budget, and to the highest safety standards.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#rfp" class="rounded-2xl bg-white text-black px-7 py-3 hover:opacity-90 shadow-lux">Request a Proposal</a>
+            <a href="#projects" class="rounded-2xl border border-white/30 px-6 py-3 hover:bg-white/10">See Our Work</a>
+          </div>
+          <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm max-w-3xl">
+            <div class="rounded-xl border border-white/20 bg-white/5 p-3 text-center">25+ Years</div>
+            <div class="rounded-xl border border-white/20 bg-white/5 p-3 text-center">UAE • KSA • EG</div>
+            <div class="rounded-xl border border-white/20 bg-white/5 p-3 text-center">BIM-Driven</div>
+            <div class="rounded-xl border border-white/20 bg-white/5 p-3 text-center">Zero-Incident</div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-3xl border border-white/10 bg-white/5 glass overflow-hidden">
+            <img src="image/sky-views.jpg" alt="Hero project panel" class="w-full h-full object-cover" loading="lazy"/>
+          </div>
+          <div class="absolute -bottom-4 left-6 right-6 grid grid-cols-3 gap-3">
+            <div class="rounded-2xl border border-white/15 bg-white/10 text-center font-semibold px-4 py-3">Civil</div>
+            <div class="rounded-2xl border border-white/15 bg-white/10 text-center font-semibold px-4 py-3">MEP</div>
+            <div class="rounded-2xl border border-white/15 bg-white/10 text-center font-semibold px-4 py-3">Fit-Out</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- logo strip -->
+    <div class="bg-white/5 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-6 overflow-hidden">
+        <div class="flex gap-10 logo-strip w-[200%]">
+          <img src="client1.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client2.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client3.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client4.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client5.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client1.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client2.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client3.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client4.svg" class="h-8 opacity-70" alt="client"/>
+          <img src="client5.svg" class="h-8 opacity-70" alt="client"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about" class="py-20 bg-[#0f0f10] section-slope">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="section-title text-3xl md:text-4xl font-black tracking-tight">About AGILE PRIME</h2>
+        <p class="mt-4 text-white/70 max-w-2xl">We are a multi-disciplinary contractor delivering civil, MEP, and luxury fit-out. Since 1996, our teams have executed towers, hospitality, data centers, and residential at pace and quality that stand out. We operate BIM-driven workflows, maintain ISO-aligned QA/QC, and uphold a zero-incident ambition.</p>
+        <ul class="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
+          <li class="rounded-xl border border-white/10 bg-white/[0.04] p-4">Regional presence: UAE • KSA • Egypt</li>
+          <li class="rounded-xl border border-white/10 bg-white/[0.04] p-4">End-to-end delivery: design coordination to handover</li>
+          <li class="rounded-xl border border-white/10 bg-white/[0.04] p-4">Supply capability: materials, logistics, workforce</li>
+          <li class="rounded-xl border border-white/10 bg-white/[0.04] p-4">Trusted by leading developers & operators</li>
+        </ul>
+      </div>
+      <div class="rounded-3xl border border-white/10 overflow-hidden">
+        <img src="image/Damac_Towers.jpg" alt="About visual" class="w-full h-full object-cover"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section id="services" class="py-20 bg-[#0b0b0c]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="section-title text-3xl md:text-4xl font-black tracking-tight">Full-Cycle Capabilities</h2>
+        <span class="text-sm text-white/60">One team • One standard of excellence</span>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="card rounded-3xl p-6"><div class="text-lg font-semibold mb-3 flex items-center gap-2"><i data-lucide="building-2"></i> Civil Works</div><ul class="space-y-2 text-sm text-white/70"><li class="tick">Reinforced concrete</li><li class="tick">Facades & waterproofing</li><li class="tick">Infrastructure</li></ul></div>
+        <div class="card rounded-3xl p-6"><div class="text-lg font-semibold mb-3 flex items-center gap-2"><i data-lucide="wrench"></i> MEP</div><ul class="space-y-2 text-sm text-white/70"><li class="tick">HVAC & ventilation</li><li class="tick">Plumbing & drainage</li><li class="tick">Firefighting & alarm</li></ul></div>
+        <div class="card rounded-3xl p-6"><div class="text-lg font-semibold mb-3 flex items-center gap-2"><i data-lucide="layers"></i> Fit-Out</div><ul class="space-y-2 text-sm text-white/70"><li class="tick">Gypsum • ceilings</li><li class="tick">Flooring • joinery</li><li class="tick">Luxury finishes</li></ul></div>
+        <div class="card rounded-3xl p-6"><div class="text-lg font-semibold mb-3 flex items-center gap-2"><i data-lucide="drill"></i> Building Materials</div><ul class="space-y-2 text-sm text-white/70"><li class="tick">Porcelain & marble</li><li class="tick">Sanitaryware</li><li class="tick">Lighting solutions</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects (REAL IMAGES) ===== -->
+  <section id="projects" class="py-20 bg-[#0b0b0c]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between mb-6">
+        <h2 class="section-title text-3xl md:text-4xl font-black tracking-tight">Signature Projects</h2>
+        <div class="text-sm text-white/60">UAE • Egypt • KSA</div>
+      </div>
+
+      <div class="overflow-x-auto cardsnap flex gap-6 pb-4">
+        <!-- 1) Damac Towers -->
+        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card">
+          <div class="aspect-[4/3]"><img src="image/Damac_Towers.jpg" alt="Damac Towers" class="w-full h-full object-cover"/></div>
+          <div class="p-5">
+            <div class="text-xl font-semibold">Damac Towers</div>
+            <div class="mt-1 text-sm text-white/60 flex items-center justify-between"><span>UAE</span><span>High-Rise Residential</span></div>
+          </div>
+        </article>
+
+        <!-- 2) Rotana Al Jaddaf -->
+        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card">
+          <div class="aspect-[4/3]"><img src="image/rotana.jpg" alt="Rotana Al Jaddaf" class="w-full h-full object-cover"/></div>
+          <div class="p-5">
+            <div class="text-xl font-semibold">Rotana Al Jaddaf</div>
+            <div class="mt-1 text-sm text-white/60 flex items-center justify-between"><span>UAE</span><span>Hospitality</span></div>
+          </div>
+        </article>
+
+        <!-- 3) Sky Views Towers -->
+        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card">
+          <div class="aspect-[4/3]"><img src="image/sky-views.jpg" alt="Sky Views Towers" class="w-full h-full object-cover"/></div>
+          <div class="p-5">
+            <div class="text-xl font-semibold">Sky Views Towers</div>
+            <div class="mt-1 text-sm text-white/60 flex items-center justify-between"><span>UAE</span><span>Mixed Use</span></div>
+          </div>
+        </article>
+
+        <!-- 4) Dubai Design District -->
+        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card">
+          <div class="aspect-[4/3]"><img src="image/plam.jpg" alt="Dubai Design District" class="w-full h-full object-cover"/></div>
+          <div class="p-5">
+            <div class="text-xl font-semibold">Dubai Design District</div>
+            <div class="mt-1 text-sm text-white/60 flex items-center justify-between"><span>UAE</span><span>Commercial / Cultural</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Excellence (FIXED WITH IMAGE) ===== -->
+  <section id="excellence" class="py-20 bg-[#0f0f10] section-slope">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="section-title text-3xl md:text-4xl font-black tracking-tight">Quality that Shows. Safety that Leads.</h2>
+        <p class="mt-4 text-white/70 max-w-2xl">ISO-aligned QA/QC, layered inspections, and a Zero-Incident ambition. We embed safety and quality into every stage — from tender to handover.</p>
+        <div class="mt-6 grid sm:grid-cols-3 gap-4 text-sm">
+          <div class="rounded-2xl border border-white/10 p-4 bg-white/[0.04]"><div class="font-semibold flex items-center gap-2"><i data-lucide="shield-check"></i> QA/QC</div><div class="text-white/70 mt-1">Zero-defect handover</div></div>
+          <div class="rounded-2xl border border-white/10 p-4 bg-white/[0.04]"><div class="font-semibold flex items-center gap-2"><i data-lucide="hard-hat"></i> HSE</div><div class="text-white/70 mt-1">Recurring training</div></div>
+          <div class="rounded-2xl border border-white/10 p-4 bg-white/[0.04]"><div class="font-semibold flex items-center gap-2"><i data-lucide="badge-check"></i> Reliability</div><div class="text-white/70 mt-1">On-time, on-budget</div></div>
+        </div>
+        <div class="mt-6 text-sm text-white/60">Awards & Recognitions: ISO-aligned systems • Safety Excellence • Preferred Vendor (selected clients)</div>
+      </div>
+      <div class="rounded-3xl border border-white/10 overflow-hidden aspect-[4/3]">
+        <img src="image/eng.png" alt="Excellence showcase" class="w-full h-full object-cover"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Innovation ===== -->
+  <section id="innovation" class="py-20 bg-[#0b0b0c]">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="section-title text-3xl md:text-4xl font-black tracking-tight">Engineered by Data. Accelerated by BIM.</h2>
+      <p class="mt-3 text-white/70 max-w-3xl">BIM 3D coordination, drone-assisted monitoring, and ERP-linked procurement create real-time visibility and clash-free delivery.</p>
+      <div class="mt-8 grid sm:grid-cols-3 gap-4">
+        <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-5"><div class="text-sm text-white/70">BIM & Digital Twins</div><div class="text-2xl font-extrabold mt-1">Clash-Free</div></div>
+        <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-5"><div class="text-sm text-white/70">Drone Monitoring</div><div class="text-2xl font-extrabold mt-1">Real-Time</div></div>
+        <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-5"><div class="text-sm text-white/70">Procurement</div><div class="text-2xl font-extrabold mt-1">ERP-Linked</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RFP / Contact Form ===== -->
+  <section id="rfp" class="py-20 bg-[#0f0f10] section-slope">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="section-title text-3xl md:text-4xl font-black tracking-tight">Ready to Build With Confidence?</h2>
+        <p class="mt-3 text-white/70 max-w-xl">Share your scope, timeline, and budget. Our engineering team will propose the fastest, safest path to delivery.</p>
+        <div class="mt-7">
+          <a href="mailto:info@agileprime.com?subject=RFP%20Request%20-%20AGILE%20PRIME&body=Hi%20AGILE%20PRIME%20team%2C%0A%0ACompany%3A%0AScope%3A%20Civil%20%2F%20MEP%20%2F%20Fit-Out%0ATimeline%3A%0ABudget%3A%0AContact%3A%0A%0AThanks%2C" class="rounded-2xl bg-white text-black px-7 py-3 hover:opacity-90 shadow-lux">Email Your RFP</a>
+        </div>
+      </div>
+      <div class="rounded-3xl border border-white/10 p-6 bg-white/[0.04]">
+        <form class="grid grid-cols-1 gap-4" onsubmit="event.preventDefault();alert('Thanks! We\\'ll contact you shortly.');">
+          <input class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" placeholder="Company Name" required>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <input class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" placeholder="Full Name" required>
+            <input class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" placeholder="Email" type="email" required>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <select class="rounded-xl border border-white/15 bg-black/20 px-4 py-3"><option>Scope — Civil</option><option>Scope — MEP</option><option>Scope — Fit-Out</option></select>
+            <input class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" placeholder="Budget (USD)">
+          </div>
+          <textarea class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" rows="4" placeholder="Project brief, timeline, location..."></textarea>
+          <button type="submit" class="rounded-2xl bg-gold text-white px-6 py-3 shadow-lux">Send Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" class="py-14 bg-[#0b0b0c]">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="rounded-3xl border border-white/10 p-6 md:p-8 bg-white/[0.04]">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div>
+            <div class="text-xl font-bold">Head Office — Dubai</div>
+            <div class="mt-2 text-white/70">Office 1708, Bay View Tower, Business Bay, Dubai, UAE</div>
+          </div>
+          <div class="space-y-2 text-white/90">
+            <a href="tel:+971500000000" class="block">+971 50 000 0000</a>
+            <a href="mailto:info@agileprime.com" class="block">info@agileprime.com</a>
+          </div>
+          <div class="space-y-2 text-white/70 text-sm">
+            <div>Mon–Fri: 9:00–18:00 (Gulf Standard Time)</div>
+            <div>CRN • VAT • ISO Certificates available upon request</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="py-8 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/60">
+      <div class="flex items-center gap-3">
+        <img src="image/Agile-Logo.png" alt="AGILE PRIME" class="logo-img" loading="lazy"/>
+        <span class="font-semibold text-white/90">AGILE PRIME</span>
+      </div>
+      <div>© <span id="y"></span> AGILE PRIME General Contracting L.L.C. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent=new Date().getFullYear();
+
+    // Lenis smooth scroll
+    window.addEventListener('load',()=>{
+      const lenis=new Lenis({smoothWheel:true});
+      function raf(t){lenis.raf(t);requestAnimationFrame(raf)}
+      requestAnimationFrame(raf)
+    });
+
+    // GSAP reveal on Services cards
+    window.addEventListener('load',()=>{
+      if(!window.gsap||!window.ScrollTrigger) return;
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('#services .card').forEach((el,i)=>{
+        gsap.from(el,{y:30,opacity:0,duration:.6,delay:i*.05,
+          scrollTrigger:{trigger:el,start:'top 85%'}})
+      })
+    });
+
+    // Scrollspy for nav
+    const sections=['about','services','projects','excellence','innovation','contact'];
+    const links=[...document.querySelectorAll('.nav a')];
+    const map=new Map(sections.map(id=>[id,document.getElementById(id)]));
+    const spy=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const id=e.target.id;
+          links.forEach(a=>a.setAttribute('aria-current',a.getAttribute('href')==='#'+id?'true':'false'));
+        }
+      })
+    },{rootMargin:'-40% 0px -55% 0px',threshold:0});
+    sections.forEach(id=>{const el=map.get(id); if(el) spy.observe(el)});
+
+    // Respect prefers-reduced-motion
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.documentElement.style.scrollBehavior='smooth';
+    }
+  </script>
+</body>
+</html>
