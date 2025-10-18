@@ -8,13 +8,26 @@
   <link rel="icon" href="favicon.ico"/>
   <meta name="theme-color" content="#0b0b0c"/>
 
+  <!-- Open Graph / Twitter for nicer shares -->
+  <meta property="og:title" content="AGILE PRIME — General Contracting"/>
+  <meta property="og:description" content="Civil • MEP • Luxury Fit-Out across the UAE, KSA & Egypt — BIM-driven, ISO-aligned."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="image/og-cover.jpg"/>
+  <meta property="og:site_name" content="AGILE PRIME"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config={theme:{extend:{
-      colors:{gold:{DEFAULT:'#b88917'}},
-      boxShadow:{lux:'0 0 0 1px rgba(184,137,23,.35),0 20px 60px rgba(184,137,23,.18)'}
-    }}} 
+      colors:{gold:{DEFAULT:'#b88917', 50:'#fff7e3',100:'#fde9bf',200:'#f6d38a',300:'#eebb54',400:'#e3a92d',500:'#b88917',600:'#946c12',700:'#75540f',800:'#5c430f',900:'#4a370f'}},
+      boxShadow:{lux:'0 0 0 1px rgba(184,137,23,.35),0 20px 60px rgba(184,137,23,.18)'},
+      backgroundImage:{
+        grid:"radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 1px)",
+        vignette:"radial-gradient(1200px 500px at 50% -20%, rgba(184,137,23,.12), transparent 60%)",
+        goldfade:"linear-gradient(90deg,#f1d27a,#b88917,#8a6712)"
+      }
+    }}}
   </script>
 
   <!-- GSAP + ScrollTrigger -->
@@ -31,14 +44,13 @@
   </script>
 
   <style>
+    /* ====== Micro identity touches ====== */
     .gold-text{background:linear-gradient(90deg,#f1d27a,#b88917,#8a6712);-webkit-background-clip:text;background-clip:text;color:transparent}
     .glass{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
     .section-slope{clip-path:polygon(0 4rem,100% 0,100% calc(100% - 4rem),0 100%)}
     .tick:after{content:"";display:inline-block;width:.55rem;height:.55rem;border-radius:999px;background:#b88917;margin-left:.5rem}
     .cardsnap{scroll-snap-type:x mandatory}
     .cardsnap>*{scroll-snap-align:start}
-    .logo-strip{animation:strip 26s linear infinite}
-    @keyframes strip{to{transform:translateX(-50%)}}
 
     /* nav underline */
     .nav a{position:relative;padding-bottom:.4rem}
@@ -53,14 +65,35 @@
     .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
     .logo-img{height:4rem;width:auto;transition:transform .25s ease}
     .logo-img:hover{transform:scale(1.03)}
+
+    /* client logos */
+    .logo-strip{animation:strip 26s linear infinite}
+    @keyframes strip{to{transform:translateX(-50%)}}
+    .logo-marquee:hover .logo-strip{animation-play-state:paused}
+    .logo-item{height:2rem;opacity:.75;filter:grayscale(100%) contrast(1.05);transition:opacity .2s ease,filter .2s ease,transform .2s ease}
+    .logo-item:hover{opacity:1;filter:grayscale(0);transform:translateY(-2px)}
+
+    /* grain + spotlight */
+    .grain:before{content:"";position:fixed;inset:-50%;z-index:-1;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".035"/></svg>');mix-blend-mode:overlay;pointer-events:none}
+    .spotlight{--mx:50%;--my:50%;background:radial-gradient(250px 250px at var(--mx) var(--my), rgba(184,137,23,.14), transparent 60%)}
+
+    /* 3D tilt for project cards */
+    .tilt{transform-style:preserve-3d;perspective:900px}
+    .tilt > .tilt-inner{transform:translateZ(0);transition:transform .2s ease}
+    .tilt:hover > .tilt-inner{transform:translateZ(24px)}
+
+    /* sticky progress bar */
+    .progress{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,#b88917,#d2aa3a);transform-origin:0 50%;transform:scaleX(0);z-index:60}
   </style>
 </head>
-<body class="bg-[#0b0b0c] text-white">
+<body class="bg-[#0b0b0c] text-white grain">
+  <div class="progress" id="progress"></div>
+
   <!-- ===== Header ===== -->
   <header class="fixed top-0 inset-x-0 z-50 bg-black/40 glass border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3">
-        <img src="image/Agile-Logo.png" alt="AGILE PRIME" class="logo-img" loading="eager"/>
+        <img src="image/Agile-Logo.png" alt="AGILE PRIME" class="logo-img" loading="eager" width="160" height="64"/>
         <div class="leading-tight hidden sm:block">
           <div class="text-xl font-black tracking-tight">AGILE PRIME</div>
           <div class="text-[10px] uppercase tracking-[0.25em] text-white/60">General Contracting L.L.C.</div>
@@ -75,24 +108,28 @@
         <a href="#contact" class="text-white/70 hover:text-white">Contact</a>
       </nav>
       <div class="flex items-center gap-2">
-        <a href="#rfp" class="hidden sm:inline-flex rounded-2xl bg-white text-black px-5 py-2.5 hover:opacity-90 shadow-lux">Request Proposal</a>
+        <a href="#rfp" class="hidden sm:inline-flex rounded-2xl bg-white text-black px-5 py-2.5 hover:opacity-90 shadow-lux magnet">Request Proposal</a>
       </div>
     </div>
   </header>
 
   <!-- ===== Hero ===== -->
-  <section class="relative pt-28" aria-label="Hero">
+  <section class="relative pt-28 spotlight" aria-label="Hero">
     <div class="absolute inset-0 -z-10">
-      <img src="https://cdn.prod.website-files.com/6487761fc9643cfd4ff93058/666764a17c17fb0ff66b9f43_phases_of_construction_projects.webp" alt="Construction hero" class="h-full w-full object-cover" loading="eager"/>
+      <img src="https://cdn.prod.website-files.com/6487761fc9643cfd4ff93058/666764a17c17fb0ff66b9f43_phases_of_construction_projects.webp" alt="Construction hero" class="h-full w-full object-cover" loading="eager" width="2400" height="1350"/>
       <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.35),rgba(11,11,12,1))]"></div>
+      <div class="absolute inset-0 bg-vignette"></div>
+      <div class="absolute inset-0 bg-grid [background-size:36px_36px] opacity-[.08]"></div>
     </div>
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid lg:grid-cols-2 gap-10 items-center min-h-[70vh]">
         <div>
-          <h1 class="text-5xl md:text-7xl font-black leading-[1.02] tracking-tight">Building Tomorrow with <span class="gold-text">Precision</span></h1>
+          <h1 id="hero-title" class="text-5xl md:text-7xl font-black leading-[1.02] tracking-tight">
+            Building Tomorrow with <span class="gold-text">Precision</span>
+          </h1>
           <p class="mt-5 text-lg md:text-xl text-white/80 max-w-2xl">Civil • MEP • Luxury Fit-Out across the UAE, KSA & Egypt — on time, on budget, and to the highest safety standards.</p>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#rfp" class="rounded-2xl bg-white text-black px-7 py-3 hover:opacity-90 shadow-lux">Request a Proposal</a>
+            <a href="#rfp" class="rounded-2xl bg-white text-black px-7 py-3 hover:opacity-90 shadow-lux magnet">Request a Proposal</a>
             <a href="#projects" class="rounded-2xl border border-white/30 px-6 py-3 hover:bg-white/10">See Our Work</a>
           </div>
           <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm max-w-3xl">
@@ -103,8 +140,8 @@
           </div>
         </div>
         <div class="relative">
-          <div class="aspect-[4/3] rounded-3xl border border-white/10 bg-white/5 glass overflow-hidden">
-            <img src="image/sky-views.jpg" alt="Hero project panel" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="aspect-[4/3] rounded-3xl border border-white/10 bg-white/5 glass overflow-hidden tilt">
+            <img src="image/Damac_Towers.jpg" alt="Hero project panel" class="w-full h-full object-cover tilt-inner" loading="lazy" width="1200" height="900"/>
           </div>
           <div class="absolute -bottom-4 left-6 right-6 grid grid-cols-3 gap-3">
             <div class="rounded-2xl border border-white/15 bg-white/10 text-center font-semibold px-4 py-3">Civil</div>
@@ -116,19 +153,25 @@
     </div>
 
     <!-- logo strip -->
-    <div class="bg-white/5 border-t border-white/10">
+    <div class="bg-white/5 border-t border-white/10 logo-marquee">
       <div class="max-w-7xl mx-auto px-4 py-6 overflow-hidden">
-        <div class="flex gap-10 logo-strip w-[200%]">
-          <img src="client1.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client2.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client3.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client4.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client5.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client1.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client2.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client3.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client4.svg" class="h-8 opacity-70" alt="client"/>
-          <img src="client5.svg" class="h-8 opacity-70" alt="client"/>
+        <div class="flex gap-10 logo-strip w-[200%] items-center">
+          <!-- set 1 -->
+          <img src="image/logo/damac.png"   alt="DAMAC"           class="logo-item">
+          <img src="image/logo/e.png"       alt="e& (Etisalat)"   class="logo-item">
+          <img src="image/logo/emaar.png"   alt="Emaar"           class="logo-item">
+          <img src="image/logo/habtor.png" alt="Al Habtoor"      class="logo-item">
+          <img src="image/logo/nakhel.png" alt="Nakheel"         class="logo-item">
+          <img src="image/logo/neshama.png" alt="Nshama"          class="logo-item">
+          <img src="image/logo/wafia.png"   alt="Wafi"            class="logo-item">
+          <!-- duplicated for infinite marquee -->
+          <img src="image/logo/damac.png"   alt="" class="logo-item" aria-hidden="true">
+          <img src="image/logo/e.png"       alt="" class="logo-item" aria-hidden="true">
+          <img src="image/logo/emaar.png"   alt="" class="logo-item" aria-hidden="true">
+          <img src="image/logo/habtor.png" alt="" class="logo-item" aria-hidden="true">
+          <img src="image/logo/nakhel.png" alt="" class="logo-item" aria-hidden="true">
+          <img src="image/logo/neshama.png" alt="" class="logo-item" aria-hidden="true">
+          <img src="image/logo/wafia.png"   alt="" class="logo-item" aria-hidden="true">
         </div>
       </div>
     </div>
@@ -148,7 +191,7 @@
         </ul>
       </div>
       <div class="rounded-3xl border border-white/10 overflow-hidden">
-        <img src="image/Damac_Towers.jpg" alt="About visual" class="w-full h-full object-cover"/>
+        <img src="image/sky-views.jpg" alt="About visual" class="w-full h-full object-cover" loading="lazy" width="1200" height="900"/>
       </div>
     </div>
   </section>
@@ -179,8 +222,8 @@
 
       <div class="overflow-x-auto cardsnap flex gap-6 pb-4">
         <!-- 1) Damac Towers -->
-        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card">
-          <div class="aspect-[4/3]"><img src="image/Damac_Towers.jpg" alt="Damac Towers" class="w-full h-full object-cover"/></div>
+        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card tilt">
+          <div class="aspect-[4/3]"><img src="image/Damac_Towers.jpg" alt="Damac Towers" class="w-full h-full object-cover tilt-inner" loading="lazy" width="900" height="675"/></div>
           <div class="p-5">
             <div class="text-xl font-semibold">Damac Towers</div>
             <div class="mt-1 text-sm text-white/60 flex items-center justify-between"><span>UAE</span><span>High-Rise Residential</span></div>
@@ -188,8 +231,8 @@
         </article>
 
         <!-- 2) Rotana Al Jaddaf -->
-        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card">
-          <div class="aspect-[4/3]"><img src="image/rotana.jpg" alt="Rotana Al Jaddaf" class="w-full h-full object-cover"/></div>
+        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card tilt">
+          <div class="aspect-[4/3]"><img src="image/rotana.jpg" alt="Rotana Al Jaddaf" class="w-full h-full object-cover tilt-inner" loading="lazy" width="900" height="675"/></div>
           <div class="p-5">
             <div class="text-xl font-semibold">Rotana Al Jaddaf</div>
             <div class="mt-1 text-sm text-white/60 flex items-center justify-between"><span>UAE</span><span>Hospitality</span></div>
@@ -197,8 +240,8 @@
         </article>
 
         <!-- 3) Sky Views Towers -->
-        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card">
-          <div class="aspect-[4/3]"><img src="image/sky-views.jpg" alt="Sky Views Towers" class="w-full h-full object-cover"/></div>
+        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card tilt">
+          <div class="aspect-[4/3]"><img src="image/sky-views.jpg" alt="Sky Views Towers" class="w-full h-full object-cover tilt-inner" loading="lazy" width="900" height="675"/></div>
           <div class="p-5">
             <div class="text-xl font-semibold">Sky Views Towers</div>
             <div class="mt-1 text-sm text-white/60 flex items-center justify-between"><span>UAE</span><span>Mixed Use</span></div>
@@ -206,8 +249,8 @@
         </article>
 
         <!-- 4) Dubai Design District -->
-        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card">
-          <div class="aspect-[4/3]"><img src="image/plam.jpg" alt="Dubai Design District" class="w-full h-full object-cover"/></div>
+        <article class="min-w-[320px] max-w-sm rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden card tilt">
+          <div class="aspect-[4/3]"><img src="image/plam.jpg" alt="Dubai Design District" class="w-full h-full object-cover tilt-inner" loading="lazy" width="900" height="675"/></div>
           <div class="p-5">
             <div class="text-xl font-semibold">Dubai Design District</div>
             <div class="mt-1 text-sm text-white/60 flex items-center justify-between"><span>UAE</span><span>Commercial / Cultural</span></div>
@@ -217,7 +260,7 @@
     </div>
   </section>
 
-  <!-- ===== Excellence (FIXED WITH IMAGE) ===== -->
+  <!-- ===== Excellence ===== -->
   <section id="excellence" class="py-20 bg-[#0f0f10] section-slope">
     <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
       <div>
@@ -231,7 +274,7 @@
         <div class="mt-6 text-sm text-white/60">Awards & Recognitions: ISO-aligned systems • Safety Excellence • Preferred Vendor (selected clients)</div>
       </div>
       <div class="rounded-3xl border border-white/10 overflow-hidden aspect-[4/3]">
-        <img src="image/eng.png" alt="Excellence showcase" class="w-full h-full object-cover"/>
+        <img src="image/Damac_Towers.jpg" alt="Excellence showcase" class="w-full h-full object-cover" loading="lazy" width="1200" height="900"/>
       </div>
     </div>
   </section>
@@ -250,32 +293,153 @@
   </section>
 
   <!-- ===== RFP / Contact Form ===== -->
-  <section id="rfp" class="py-20 bg-[#0f0f10] section-slope">
-    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="section-title text-3xl md:text-4xl font-black tracking-tight">Ready to Build With Confidence?</h2>
-        <p class="mt-3 text-white/70 max-w-xl">Share your scope, timeline, and budget. Our engineering team will propose the fastest, safest path to delivery.</p>
-        <div class="mt-7">
-          <a href="mailto:info@agileprime.com?subject=RFP%20Request%20-%20AGILE%20PRIME&body=Hi%20AGILE%20PRIME%20team%2C%0A%0ACompany%3A%0AScope%3A%20Civil%20%2F%20MEP%20%2F%20Fit-Out%0ATimeline%3A%0ABudget%3A%0AContact%3A%0A%0AThanks%2C" class="rounded-2xl bg-white text-black px-7 py-3 hover:opacity-90 shadow-lux">Email Your RFP</a>
+<!-- ===== Location / Creative Map Hub ===== -->
+<section id="rfp" class="py-24 bg-[#0f0f10] section-slope">
+  <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-start">
+    <!-- Left: Contact + Smart Directions -->
+    <div class="space-y-6">
+      <header>
+        <h2 class="section-title text-3xl md:text-4xl font-black tracking-tight flex items-center gap-3">
+          <i data-lucide="map-pin" class="w-7 h-7 text-gold"></i>
+          Find Us at Business Bay
+        </h2>
+        <p class="mt-3 text-white/70">
+          Office 1708, Bay View Tower — Dubai, UAE • 
+          <span class="text-white/60">25.185156° N, 55.269441° E</span>
+        </p>
+      </header>
+
+      <!-- Smart chips -->
+      <div class="flex flex-wrap gap-3 text-sm">
+        <span class="rounded-2xl border border-white/15 bg-white/5 px-3 py-1.5">Parking Available</span>
+        <span class="rounded-2xl border border-white/15 bg-white/5 px-3 py-1.5">RTA Taxi Drop-off</span>
+        <span class="rounded-2xl border border-white/15 bg-white/5 px-3 py-1.5">Near Business Bay Metro</span>
+      </div>
+
+      <!-- Action cards -->
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5 card">
+          <div class="font-semibold mb-2 flex items-center gap-2">
+            <i data-lucide="navigation"></i> Quick Directions
+          </div>
+          <div class="grid gap-2">
+            <a target="_blank" href="https://maps.app.goo.gl/PeBLbgnJjJtLyyKW9" 
+               class="rounded-xl bg-white text-black px-4 py-2.5 hover:opacity-90 inline-flex items-center justify-center gap-2">
+              <i data-lucide="car"></i> Google Maps
+            </a>
+            <a target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=Bay+View+Tower+Dubai"
+               class="rounded-xl border border-white/20 px-4 py-2.5 hover:bg-white/10 inline-flex items-center justify-center gap-2">
+              <i data-lucide="route"></i> Start Driving
+            </a>
+            <a target="_blank" href="https://wa.me/971500000000?text=Hello%20AGILE%20PRIME%2C%20I%27m%20on%20the%20way."
+               class="rounded-xl border border-white/20 px-4 py-2.5 hover:bg-white/10 inline-flex items-center justify-center gap-2">
+              <i data-lucide="phone"></i> WhatsApp Us
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5 card">
+          <div class="font-semibold mb-2 flex items-center gap-2">
+            <i data-lucide="clipboard"></i> Copy Address
+          </div>
+          <p id="addr" class="text-white/70 text-sm">
+            Office 1708, Bay View Tower, Business Bay, Dubai, UAE
+          </p>
+          <div class="mt-3 flex gap-2">
+            <button type="button" id="copyAddr" class="rounded-xl bg-gold text-white px-4 py-2 shadow-lux">Copy</button>
+            <a href="tel:+971500000000" 
+               class="rounded-xl border border-white/20 px-4 py-2 hover:bg-white/10 inline-flex items-center gap-2">
+               <i data-lucide="phone"></i> Call
+            </a>
+          </div>
+          <div class="mt-4 text-xs text-white/50">
+            Tip: Paste into your ride-hailing app.
+          </div>
         </div>
       </div>
-      <div class="rounded-3xl border border-white/10 p-6 bg-white/[0.04]">
-        <form class="grid grid-cols-1 gap-4" onsubmit="event.preventDefault();alert('Thanks! We\\'ll contact you shortly.');">
-          <input class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" placeholder="Company Name" required>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <input class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" placeholder="Full Name" required>
-            <input class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" placeholder="Email" type="email" required>
+
+      <!-- QR to navigate -->
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5 flex items-center gap-4">
+        <img src="image/qr-navigate.png" alt="Scan to Navigate" 
+             class="w-24 h-24 rounded-xl border border-white/10 object-cover" loading="lazy"/>
+        <div>
+          <div class="font-semibold">Scan to Navigate</div>
+          <div class="text-white/70 text-sm">
+            Open directions instantly on your phone’s maps app.
           </div>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <select class="rounded-xl border border-white/15 bg-black/20 px-4 py-3"><option>Scope — Civil</option><option>Scope — MEP</option><option>Scope — Fit-Out</option></select>
-            <input class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" placeholder="Budget (USD)">
-          </div>
-          <textarea class="rounded-xl border border-white/15 bg-black/20 px-4 py-3" rows="4" placeholder="Project brief, timeline, location..."></textarea>
-          <button type="submit" class="rounded-2xl bg-gold text-white px-6 py-3 shadow-lux">Send Request</button>
-        </form>
+        </div>
       </div>
     </div>
-  </section>
+
+    <!-- Right: Immersive Map + Animated Pin -->
+    <div class="relative">
+      <div class="rounded-3xl overflow-hidden border border-white/10 shadow-lux">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.867190586953!2d55.269441!3d25.185156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f433f77f20f8b%3A0x8dfbcdf6f3c66a1!2sBay%20View%20Tower!5e0!3m2!1sen!2sae!4v1697917538333!5m2!1sen!2sae" 
+          width="100%" height="520" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- Floating golden pin -->
+      <div class="absolute left-8 top-8 flex items-center gap-3">
+        <div class="relative">
+          <span class="absolute inline-flex h-8 w-8 rounded-full bg-gold opacity-30 animate-ping"></span>
+          <span class="relative inline-flex h-8 w-8 rounded-full bg-gold"></span>
+        </div>
+        <div class="rounded-2xl bg-black/60 border border-white/10 px-3 py-1.5 text-sm">
+          AGILE PRIME — Bay View Tower
+        </div>
+      </div>
+
+      <!-- Decorative route arc -->
+      <svg class="pointer-events-none absolute -left-10 bottom-10 w-[320px] h-[160px] opacity-70" 
+           viewBox="0 0 320 160" fill="none">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="#b88917"/>
+            <stop offset="100%" stop-color="#d2aa3a"/>
+          </linearGradient>
+        </defs>
+        <path id="routeArc" 
+              d="M10 150 C 120 10, 200 10, 310 150" 
+              stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 10"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Copy address
+  document.getElementById('copyAddr')?.addEventListener('click', async ()=>{
+    try {
+      await navigator.clipboard.writeText(document.getElementById('addr').textContent.trim());
+      const b=document.getElementById('copyAddr'); 
+      const t=b.textContent; 
+      b.textContent='Copied!'; 
+      setTimeout(()=>b.textContent=t,1200);
+    } catch(e) {
+      alert('Copied: '+document.getElementById('addr').textContent.trim());
+    }
+  });
+
+  // Animate decorative route arc when visible
+  if(window.gsap && window.ScrollTrigger){
+    const arc=document.getElementById('routeArc');
+    if(arc){
+      const len=arc.getTotalLength();
+      arc.style.strokeDasharray=len; 
+      arc.style.strokeDashoffset=len;
+      gsap.to(arc,{
+        strokeDashoffset:0, 
+        duration:1.6, 
+        ease:'power2.out', 
+        scrollTrigger:{trigger:arc, start:'top 90%'}
+      });
+    }
+  }
+</script>
+
 
   <!-- ===== Contact ===== -->
   <section id="contact" class="py-14 bg-[#0b0b0c]">
@@ -303,7 +467,7 @@
   <footer class="py-8 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/60">
       <div class="flex items-center gap-3">
-        <img src="image/Agile-Logo.png" alt="AGILE PRIME" class="logo-img" loading="lazy"/>
+        <img src="image/Agile-Logo.png" alt="AGILE PRIME" class="logo-img" loading="lazy" width="160" height="64"/>
         <span class="font-semibold text-white/90">AGILE PRIME</span>
       </div>
       <div>© <span id="y"></span> AGILE PRIME General Contracting L.L.C. All rights reserved.</div>
@@ -321,14 +485,64 @@
       requestAnimationFrame(raf)
     });
 
-    // GSAP reveal on Services cards
+    // Scroll progress bar
+    const progress=document.getElementById('progress');
+    const setProgress=()=>{
+      const h=document.documentElement; const sc=h.scrollTop; const m=h.scrollHeight-h.clientHeight; progress.style.transform=`scaleX(${m?sc/m:0})`;
+    };
+    addEventListener('scroll', setProgress, {passive:true});
+    setProgress();
+
+    // Spotlight follows cursor (hero only)
+    const hero=document.querySelector('section[aria-label="Hero"]');
+    hero?.addEventListener('pointermove',e=>{
+      const r=hero.getBoundingClientRect();
+      hero.style.setProperty('--mx', (e.clientX-r.left)+'px');
+      hero.style.setProperty('--my', (e.clientY-r.top)+'px');
+    });
+
+    // GSAP reveals
     window.addEventListener('load',()=>{
       if(!window.gsap||!window.ScrollTrigger) return;
       gsap.registerPlugin(ScrollTrigger);
+      // Split hero title into words for stagger
+      const title=document.getElementById('hero-title');
+      if(title){
+        const words=title.textContent.split(' ');
+        title.textContent='';
+        words.forEach(w=>{const span=document.createElement('span'); span.textContent=w+' '; span.style.display='inline-block'; title.appendChild(span)});
+        gsap.from(title.children,{y:30,opacity:0,stagger:0.06,duration:.7,ease:'power2.out'});
+      }
+      // Services cards fade-up on scroll
       gsap.utils.toArray('#services .card').forEach((el,i)=>{
-        gsap.from(el,{y:30,opacity:0,duration:.6,delay:i*.05,
-          scrollTrigger:{trigger:el,start:'top 85%'}})
-      })
+        gsap.from(el,{y:30,opacity:0,duration:.6,delay:i*.05,scrollTrigger:{trigger:el,start:'top 85%'}})
+      });
+    });
+
+    // Magnetic buttons
+    const mags=[...document.querySelectorAll('.magnet')];
+    mags.forEach(btn=>{
+      btn.style.transform='translate3d(0,0,0)';
+      btn.addEventListener('pointermove',e=>{
+        const r=btn.getBoundingClientRect();
+        const dx=e.clientX-(r.left+r.width/2);
+        const dy=e.clientY-(r.top+r.height/2);
+        btn.style.transform=`translate3d(${dx*0.08}px, ${dy*0.08}px, 0)`;
+      });
+      btn.addEventListener('pointerleave',()=>{btn.style.transform='translate3d(0,0,0)'});
+    });
+
+    // 3D tilt effect for images (simple parallax)
+    const tilts=[...document.querySelectorAll('.tilt')];
+    tilts.forEach(card=>{
+      const inner=card.querySelector('.tilt-inner');
+      card.addEventListener('pointermove',e=>{
+        const r=card.getBoundingClientRect();
+        const rx=((e.clientY-r.top)/r.height - .5)*10; // rotateX
+        const ry=((e.clientX-r.left)/r.width - .5)*-10; // rotateY
+        inner.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateZ(24px)`;
+      });
+      card.addEventListener('pointerleave',()=>{inner.style.transform='translateZ(0)'});
     });
 
     // Scrollspy for nav
@@ -348,6 +562,24 @@
     // Respect prefers-reduced-motion
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       document.documentElement.style.scrollBehavior='smooth';
+      const strips=[...document.querySelectorAll('.logo-strip')];
+      strips.forEach(s=>s.style.animationDuration='0s');
+    }
+      // Copy address
+    document.getElementById('copyAddr')?.addEventListener('click', async ()=>{
+      try{await navigator.clipboard.writeText(document.getElementById('addr').textContent.trim());
+        const b=document.getElementById('copyAddr'); const t=b.textContent; b.textContent='Copied!'; setTimeout(()=>b.textContent=t,1200);
+      }catch(e){alert('Copied: '+document.getElementById('addr').textContent.trim());}
+    });
+
+    // Animate decorative route arc when visible
+    if(window.gsap && window.ScrollTrigger){
+      const arc=document.getElementById('routeArc');
+      if(arc){
+        const len=arc.getTotalLength();
+        arc.style.strokeDasharray=len; arc.style.strokeDashoffset=len;
+        gsap.to(arc,{strokeDashoffset:0, duration:1.6, ease:'power2.out', scrollTrigger:{trigger:arc, start:'top 90%'}});
+      }
     }
   </script>
 </body>
